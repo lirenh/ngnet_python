@@ -52,7 +52,7 @@ def diDFS(G, vertices):
 def dfs(G, v):
     """helper function"""
     global marked
-    print("am", v, len(marked))
+    #print("am", v, len(marked))
     marked[v] = True
     for av in G.adj(v):
         if not marked[av]:

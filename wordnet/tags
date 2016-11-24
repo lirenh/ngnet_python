@@ -1,0 +1,29 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Digraph	digraph.py	/^class Digraph:$/;"	c
+HCLEAN	utils.py	/^HCLEAN="..\/data\/hyponyms_ready.csv"$/;"	v
+HCLEAN	wordnet.py	/^HCLEAN="..\/data\/hyponyms_ready.csv"$/;"	v
+HPATH	utils.py	/^HPATH="..\/data\/wordnet\/hyponyms1000-subgraph.txt"$/;"	v
+HPATH	wordnet.py	/^HPATH="..\/data\/wordnet\/hyponyms1000-subgraph.txt"$/;"	v
+SCLEAN	utils.py	/^SCLEAN="..\/data\/synsets_ready.csv"$/;"	v
+SCLEAN	wordnet.py	/^SCLEAN="..\/data\/synsets_ready.csv"$/;"	v
+SPATH	utils.py	/^SPATH="..\/data\/wordnet\/synsets1000-subgraph.txt"$/;"	v
+SPATH	wordnet.py	/^SPATH="..\/data\/wordnet\/synsets1000-subgraph.txt"$/;"	v
+WordNet	wordnet.py	/^class WordNet:$/;"	c
+__init__	digraph.py	/^    def __init__(self, num):$/;"	m	class:Digraph
+__init__	wordnet.py	/^    def __init__(self, synsets_path, hyponyms_path):$/;"	m	class:WordNet
+add_edge	digraph.py	/^    def add_edge(self, v1, v2):$/;"	m	class:Digraph
+adj	digraph.py	/^    def adj(self, v):$/;"	m	class:Digraph
+clean_synsets	utils.py	/^def clean_synsets(synsets_path, synsets_ready):$/;"	f
+contains	wordnet.py	/^    def contains(self, word):$/;"	m	class:WordNet
+descendants	digraph.py	/^def descendants(G, synsets):$/;"	f
+dfs	digraph.py	/^def dfs(G, v):$/;"	f
+diDFS	digraph.py	/^def diDFS(G, vertices):$/;"	f
+hypnoyms	wordnet.py	/^    def hypnoyms(self, word):$/;"	m	class:WordNet
+marked	digraph.py	/^marked = []$/;"	v
+nouns	wordnet.py	/^    def nouns(self):$/;"	m	class:WordNet
+wn	wordnet.py	/^wn = wordnet.WordNet(wordnet.SCLEAN, wordnet.HPATH)$/;"	v

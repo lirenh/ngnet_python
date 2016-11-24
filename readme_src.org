@@ -26,3 +26,7 @@
 - synsets.txt\\
 Lists of all the (noun) synsets in WordNets. The first field is the synset id (an integer), the second field is the synset, and the third field is its definition:
 : 36,AND_circuit AND_gate,a circuit in a computer that fires only when all of its inputs fire
+
+- hyponym.txt\\
+contains the hyponym relationships: The first field is a synset id; subsequent fields are the ids of the synset's direct hyponyms:
+: 79537,38611,9007
