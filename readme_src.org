@@ -1,0 +1,28 @@
+#+TITLE: sepcs
+#+AUTHOR: Liren Huang
+#+EMAIL: huang.l@husky.neu.edu
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t c:nil
+#+OPTIONS: creator:comment d:(not "LOGBOOK") date:t e:t email:t f:t inline:t
+#+OPTIONS: num:t p:nil pri:nil stat:t tags:t tasks:t tex:t timestamp:t toc:t
+#+OPTIONS: todo:t |:t
+#+CREATOR: Emacs 24.5.1 (Org mode 8.2.10)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+OPTIONS: texht:t
+#+LATEX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [article,letterpaper,times,12pt,listings-bw,microtype]
+
+
+* Definitions:
+- WordNet :: [[https://wordnet.princeton.edu/][A lexical database groups words into sets of synonyms (synsets) and describes semantic relationships between them.]]
+- Synsets :: a set of synonyms.
+- Hyponym :: More specific synset. A carrot is a hyponym of plant.
+- Hypernym :: More general synset. A plant is a hypernym of carrot.
+
+* Raw Data:
+- synsets.txt\\
+Lists of all the (noun) synsets in WordNets. The first field is the synset id (an integer), the second field is the synset, and the third field is its definition:
+: 36,AND_circuit AND_gate,a circuit in a computer that fires only when all of its inputs fire
