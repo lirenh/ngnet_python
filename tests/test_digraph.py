@@ -15,7 +15,7 @@ g1.add_edge(6, 13);
 g1.add_edge(8, 10);
 g1.add_edge(9, 10);
 
-def test_diagraph():
+def test_digraph():
     assert g1.V == 14
     assert g1.E == 12
     assert g1.adj(5) == [6,7]

@@ -42,7 +42,7 @@ def diDFS(G, vertices):
     """
     Computes the vertices in G that are connected to any of the source vertices.
     Arguments:
-    G -- a Diagraph
+    G -- a Digraph
     vertices -- a set of vertices
     """
     for v in vertices:

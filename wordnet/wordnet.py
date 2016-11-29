@@ -1,34 +1,39 @@
-import numpy as np
-import pandas as pd
 import csv
-from digraph import Digraph, descendants
+from .digraph import Digraph, descendants
 
-SPATH="../data/wordnet/synsets1000-subgraph.txt"
-HPATH="../data/wordnet/hyponyms1000-subgraph.txt"
-SCLEAN="../data/synsets_ready.csv"
-HCLEAN="../data/hyponyms_ready.csv"
+SPATH="/home/liren/stash/ngnet/data/wordnet/synsets.txt"
+HPATH="/home/liren/stash/ngnet/data/wordnet/hyponyms.txt"
+SPATH1="/home/liren/stash/ngnet/test_data/wordnet/synsets1000-subgraph.txt"
+HPATH1="/home/liren/stash/ngnet/test_data/wordnet/hyponyms1000-subgraph.txt"
+SPATH2="/home/liren/stash/ngnet/test_data/wordnet/synsets14.txt"
+HPATH2="/home/liren/stash/ngnet/test_data/wordnet/hyponyms14.txt"
+
 
 class WordNet:
     """The data structure that stores entire WordNet"""
     def __init__(self, synsets_path, hyponyms_path):
-        pp = pd.read_csv(synsets_path, index_col=0)
-        # vertex to string set
-        self.v2s = pp['synset'].apply(lambda x: set(x.split(' ')))
-        # string to vertex set
-        self.s2v = {}
+        # v2s: a list of synsets, its indices represent synset vertices
+        # s2v: noun -> the synset vertices it belongs to
+        self.v2s, self.s2v = [], {}
         #all the unique nouns
-        self.all_nouns = set()
-        for id in range(self.v2s.size):
-            row = self.v2s[id]
-            self.all_nouns = self.all_nouns.union(row)
-            for word in row:
-                if word in self.s2v:
-                    self.s2v[word].add(id)
-                else:
-                    self.s2v[word] = {id}
+        self.all_nouns = []
+
+        with open(synsets_path) as sfile:
+            reader = csv.reader(sfile)
+            for row in reader:
+                words = row[1].split(' ')
+                self.v2s.append(words)
+                self.all_nouns += words
+                for word in words:
+                    if word in self.s2v:
+                        self.s2v[word].append(int(row[0]))
+                    else:
+                        self.s2v[word] = [int(row[0])]
+        self.all_nouns = set(self.all_nouns)
+
         # a directed graph of hypernyms pointing to hyponyms
-        self.G = Digraph(self.v2s.size)
-        with open(HPATH) as hfile:
+        self.G = Digraph(len(self.v2s))
+        with open(hyponyms_path) as hfile:
             reader = csv.reader(hfile)
             for row in reader:
                 for v in row[1:]:
@@ -55,5 +60,5 @@ class WordNet:
         return words
 
 # test
-wn = wordnet.WordNet(wordnet.SCLEAN, wordnet.HPATH)
-wn.hypnoyms('haemoglobin')
+#wn = WordNet(SPATH, HPATH)
+#wn.hypnoyms('haemoglobin')
