@@ -1,14 +1,6 @@
 import csv
 from .digraph import Digraph, descendants
 
-SPATH="/home/liren/stash/ngnet/data/wordnet/synsets.txt"
-HPATH="/home/liren/stash/ngnet/data/wordnet/hyponyms.txt"
-SPATH1="/home/liren/stash/ngnet/test_data/wordnet/synsets1000-subgraph.txt"
-HPATH1="/home/liren/stash/ngnet/test_data/wordnet/hyponyms1000-subgraph.txt"
-SPATH2="/home/liren/stash/ngnet/test_data/wordnet/synsets14.txt"
-HPATH2="/home/liren/stash/ngnet/test_data/wordnet/hyponyms14.txt"
-
-
 class WordNet:
     """The data structure that stores entire WordNet"""
     def __init__(self, synsets_path, hyponyms_path):
@@ -58,7 +50,3 @@ class WordNet:
         for id in hyponym_ids:
             words = words.union(self.v2s[id])
         return words
-
-# test
-#wn = WordNet(SPATH, HPATH)
-#wn.hypnoyms('haemoglobin')
