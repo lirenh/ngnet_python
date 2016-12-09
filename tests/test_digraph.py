@@ -1,5 +1,5 @@
 import pytest
-from ..wordnet.digraph import *
+from ..ngnet.digraph import *
 
 g1 = Digraph(14)
 g1.add_edge(0, 1);

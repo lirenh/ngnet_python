@@ -1,5 +1,5 @@
 import pytest
-from ..wordnet.wordnet import *
+from ..ngnet.wordnet import *
 from ..config import *
 
 def test_hypnoyms():

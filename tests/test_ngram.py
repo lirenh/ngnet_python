@@ -1,6 +1,6 @@
 import pytest
 from ..config import *
-from ..wordnet.ngram import *
+from ..ngnet.ngram import *
 
 def test_g():
     g = NGram(TEST_WORDS, TOTAL_COUNT)
