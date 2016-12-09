@@ -2,7 +2,6 @@ import csv
 from .digraph import Digraph, descendants
 
 class WordNet:
-    """The data structure that stores entire WordNet"""
     def __init__(self, synsets_path, hyponyms_path):
         # v2s: a list of synsets, its indices represent synset vertices
         # s2v: noun -> the synset vertices it belongs to

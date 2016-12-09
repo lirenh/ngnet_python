@@ -2,11 +2,9 @@ import pandas as pd
 
 class NGram:
     def __init__(self, words_file, counts_file):
-        #self.df0 = pd.read_csv(words_file, header=None, names=['word','year','count','sources'], delim_whitespace=True)
         # alltime history Dataframe
         self.df0 = pd.read_csv(words_file)
         self.year_df = self.df0.set_index('year')
-        #self.counts_df = pd.read_csv(counts_file, header=None, names=['year','total_words','pages','sources'], index_col=0)
         self.counts_df = pd.read_csv(counts_file, index_col=0)
         # use word as the index to speedup queries
         df1 = self.df0.set_index('word')
@@ -25,7 +23,6 @@ class NGram:
         try:
             word_df = self.df.loc[word]
             return word_df[word_df['year'] == year].at[word, 'count']
-            #return self.df[self.df['year'] == year].at[word, 'count']  # TODO df.loc['quantity'] index first
         except KeyError:
             return 0
 
@@ -42,9 +39,6 @@ class NGram:
         The word must exist in the start and end year (for performance). Throws KeyError if not found.
         index: year, columns: count, sources, weight
         """
-        # hist = self.df.loc[word]
-        # criterion = hist['year'].map(lambda x: x>=start and x<=end)
-        # return hist[criterion].set_index('year')
         hist = self.df.loc[word].set_index('year')
         start_index = hist.index.get_loc(start)
         end_index = hist.index.get_loc(end)
@@ -62,8 +56,6 @@ class NGram:
                 continue
             # use year as the index
             result = self.df[['year', 'count', 'weight']].loc[word].set_index('year').add(result, fill_value=0)
-        #criterion = result.index.map(lambda x: x>=start and x<=end)  # TODO apply boolean indexing before addition
-        #return result[criterion]
         start_index = result.index.get_loc(start)
         end_index = result.index.get_loc(end)
         return result[start_index: end_index + 1]

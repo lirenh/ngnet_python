@@ -1,4 +1,4 @@
-#+TITLE: sepcs
+#+TITLE: Readme
 #+AUTHOR: Liren Huang
 #+EMAIL: huang.l@husky.neu.edu
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t c:nil
@@ -16,17 +16,31 @@
 #+LaTeX_CLASS_OPTIONS: [article,letterpaper,times,12pt,listings-bw,microtype]
 
 
-* Definitions:
+* Goal:
+
+- NGram:
 - WordNet :: [[https://wordnet.princeton.edu/][A lexical database groups words into sets of synonyms (synsets) and describes semantic relationships between them.]]
 - Synsets :: a set of synonyms.
 - Hyponym :: More specific synset. A carrot is a hyponym of plant.
 - Hypernym :: More general synset. A plant is a hypernym of carrot.
 
 * Raw Data:
-- synsets.txt\\
+- googlebooks-eng-all-1gram-20120701-*.csv\\
+Tab-separated ngrams data. In 1978, the word "circumvallate", occurred 335 times overall, in 91 distinct books:\\
+: circumvallate   1978   335    91
+
+
+- totalcounts.csv\\
+Records the total number of 1-grams contained in the books that make up the corpus. In 1505, the number of total words recorded is 32059, from 231 pages, 1 book:
+: 1505,32059,231,1
+
+
+- synsets.csv\\
 Lists of all the (noun) synsets in WordNets. The first field is the synset id (an integer), the second field is the synset, and the third field is its definition:
 : 36,AND_circuit AND_gate,a circuit in a computer that fires only when all of its inputs fire
 
-- hyponym.txt\\
-contains the hyponym relationships: The first field is a synset id; subsequent fields are the ids of the synset's direct hyponyms:
+- hyponym.csv\\
+Contains the hyponym relationships: The first field is a synset id; subsequent fields are the ids of the synset's direct hyponyms:
 : 79537,38611,9007
+* Analysis
+1. [[./output/pics/word_length.png][analysis1]]

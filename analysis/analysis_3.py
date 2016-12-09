@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# diagram 3
 def plot_hypnoyms(mynet, mygram):
     sns.set(color_codes=True)
     inc_set = mynet.hypnoyms('increase')
