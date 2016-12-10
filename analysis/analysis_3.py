@@ -2,10 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def plot_hypnoyms(mynet, mygram):
+def plot_hyponyms(mynet, mygram):
     sns.set(color_codes=True)
-    inc_set = mynet.hypnoyms('increase')
-    dec_set = mynet.hypnoyms('decrease')
+    inc_set = mynet.hyponyms('increase')
+    dec_set = mynet.hyponyms('decrease')
     inc_dict, dec_dict = {}, {}
     for inc in inc_set:
         count = mygram.count_in(inc, 1900)

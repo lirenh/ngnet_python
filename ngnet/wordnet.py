@@ -38,11 +38,11 @@ class WordNet:
         """Return all nouns"""
         return self.all_nouns
 
-    def hypnoyms(self, word):
+    def hyponyms(self, word):
         """
-        Return hypnoyms as well as synonyms of the word.
+        Return hyponyms as well as synonyms of the word.
         If the word belongs to multiple synsets,
-        return all the hypnoyms of these synsets.
+        return all the hyponyms of these synsets.
         """
         words = set()
         hyponym_ids = descendants(self.G, self.s2v[word])
