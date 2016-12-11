@@ -17,7 +17,7 @@ class Digraph:
         self.E += 1
 
     def adj(self, v):
-        """Return djacent vertices"""
+        """Return adjacent vertices"""
         return self.graph[v]
 
 marked = []

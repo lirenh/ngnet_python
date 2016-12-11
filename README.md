@@ -4,7 +4,12 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">1. Project structure</a></li>
-<li><a href="#sec-2">2. Raw Data</a></li>
+<li><a href="#sec-2">2. Data</a>
+<ul>
+<li><a href="#sec-2-1">2.1. NGrams data</a></li>
+<li><a href="#sec-2-2">2.2. WordNet data</a></li>
+</ul>
+</li>
 <li><a href="#sec-3">3. Analyses</a>
 <ul>
 <li><a href="#sec-3-1">3.1. Average word length history</a></li>
@@ -21,30 +26,31 @@
 
 # Project structure<a id="sec-1" name="sec-1"></a>
 
+    .
     ├── analysis/
-    │   ├── analysis_1.py  # average word length history
-    │   ├── analysis_2.py  # socialism vs. capitalism
-    │   ├── analysis_3.py  # hyponyms of increase vs. decrease
-    │   ├── analysis_4.py  # four classical elements pie chart
-    │   └── analysis_5.py  # zipf's law
+    │   ├── analysis_1.py  ## average word length history
+    │   ├── analysis_2.py  ## socialism vs. capitalism history
+    │   ├── analysis_3.py  ## hyponyms of increase vs. decrease pie chart
+    │   ├── analysis_4.py  ## four classical elements box chart
+    │   └── analysis_5.py  ## zipf's law
     │
-    ├── analysis_results.ipynb
-    ├── collect_data.sh
-    ├── processing_data.py # process raw data and save it to output/
-    ├── config.py  # stores data paths
+    ├── analysis_results.ipynb  ## runs the program
+    ├── collect_data.sh         ## downloads data
+    ├── processing_data.py      ## processes data in raw_data/ and save it to output/
+    ├── config.py               ## contains data paths
     │
     ├── ngnet/
-    │   ├── digraph.py  # used to organize synsets relationships
-    │   ├── ngram.py    # a class storing Google NGram data. It's used in various analyses to access the required data fast
-    │   └── wordnet.py  # a class storing WordNet data. It's mainly used to get hyponyms of a given word
+    │   ├── ngram.py    ## a class storing NGram data, used in various analyses to access required data fast
+    │   ├── digraph.py  ## a directed graph used to maintain synsets' hierarchical structure
+    │   └── wordnet.py  ## a class storing WordNet data, mainly used to get all(direct and indirect) hyponyms of a given word
     │
-    ├── output/  # all data pushed to github is dummy data with only 10k entries
-    │   ├── dummy-mini_ngrams.csv  # minimal ngram
-    │   ├── ngrams_lower_alpha/    # lowercase alphabetic nouns
-    │   ├── ngrams_noun/           # nouns
+    ├── output/                    ## stores processed data
+    │   ├── dummy-mini_ngrams.csv  ## a very small subset of ngrams
+    │   ├── ngrams_lower_alpha/    ## lowercase alphabetic nouns in ngrams
+    │   ├── ngrams_noun/           ## nouns in ngrams
     │   ├── pics/
-    │   ├── total_counts.csv
-    │   └── wordnet/
+    │   ├── total_counts.csv       ## all-time history of ngrams
+    │   └── wordnet/               ## wordnet data
     │
     ├── raw_data/
     │   ├── ngrams/
@@ -52,31 +58,64 @@
     │
     └── tests/
 
-# Raw Data<a id="sec-2" name="sec-2"></a>
+# Data<a id="sec-2" name="sec-2"></a>
 
--   `googlebooks-eng-all-1gram-20120701-*.csv`
+*All ngrams data pushed to github is dummy data with 10k entries/file since original data is more than 30GB*
 
-Tab-separated ngrams data. Example below: In 1978, the word "circumvallate", occurred 335 times overall, in 91 distinct books.  
+## NGrams data<a id="sec-2-1" name="sec-2-1"></a>
 
-    circumvallate   1978   335    91
+NGrams(1-grams) raw data contains all kinds of words, including nouns, adverbs, adjectives etc. Many words contains special characters.  
+The following example: In 1879, the noun "A'Ang", occurred 45 times overall, in 5 distinct books:
 
--   `total_counts.csv`
+    ./raw_data/ngrams/*
+    
+    | A'Aang_NOUN      | 1879 | 45 | 5 |
+    | A'que_ADJ        | 1897 |  7 | 7 |
+    | anserinus_NOUN   | 1984 | 44 | 9 |
 
-Records the total number of 1-grams contained in the books. Example below: In 1505, the number of total words recorded is 32059, from 231 pages, 1 book.:
+Noun only ngrams, with their postfixes removed:
 
-    1505,32059,231,1
+    ./output/ngrams_noun/*
+    
+    | word      | year | count | sources |
+    |-----------+------+-------+---------|
+    | A'Aang    | 1879 |    45 |       5 |
+    | anserinus | 1984 |    44 |       9 |
 
--   `synsets.csv`
+Lowercase, alphabetic only ngrams:
 
-Lists of all the noun synsets in WordNets. The first field is the synset id (an integer), the second field is the synset, and the third field is its definition:
+    ./output/ngrams_lower_alpha/*
+    
+    | word      | year | count | sources |
+    |-----------+------+-------+---------|
+    | anserinus | 1984 |    44 |       9 |
 
-    36,AND_circuit AND_gate,a circuit in a computer that fires only when all of its inputs fire
+Records the total number of 1-grams contained in the books.  
+The following example: In 2008, 19482936409 words in 108811006 pages from 206272 distinct sources were recorded:
 
--   `hyponyms.csv`
+    ./output/total_counts.csv
+    
+    | year | total_words | pages     | sources |
+    |------+-------------+-----------+---------|
+    | 2008 | 19482936409 | 108811006 |  206272 |
 
-Contains the hyponym relationships: The first field is a synset id; subsequent fields are the ids of the synset's direct hyponyms:
+## WordNet data<a id="sec-2-2" name="sec-2-2"></a>
 
-    79537,38611,9007
+All the noun synsets (synonyms) in WordNets:
+
+    ./output/wordnet/synsets.csv
+    
+    | id | synset               | definition                                                          |
+    |----+----------------------+---------------------------------------------------------------------|
+    | 36 | AND_circuit AND_gate | a circuit in a computer that fires only when all of its inputs fire |
+
+Direct Hyponyms (more specific synset) information e.g. (change, modification) -> (damage, harm).  
+1st field is a synset id; subsequent fields are the ids of its direct hyponyms.  
+The following example: #32 synset has 5 direct hyponyms which are #77393, #64712, #51671, #37744, #27392:
+
+    ./output/wordnet/hyponyms.csv
+    
+    | 32 | 77393 | 64712 | 51671 | 37744 | 27392 |
 
 # Analyses<a id="sec-3" name="sec-3"></a>
 
@@ -102,10 +141,10 @@ People didn't tend to use "decrease" to express its meanings. It wasn't even amo
 
 ![analysis4](./output/pics/zipfs.png)  
 **Observation:**  
-All loglog plots show a straight line, which means the frequency of words is proportional to the rank. It's an interesting fact since the ranking of a word shouldn't have any numerical properties.  
+All loglog plots show a straight line, which means rank 1 (most popular) word is used twice as often as rank 2 (2nd most popular) word, 3 time as often as rank 3 word etc. It's an interesting observation since the ranking of a word shouldn't have any numerical properties.  
 
 ## Four classical elements<a id="sec-3-5" name="sec-3-5"></a>
 
 ![analysis5](./output/pics/hyponyms_box.png)  
 **Observation:**  
-Many words have related meanings with the 4 classical elements. In 2000 their "strength" is in the order of air > earth > water > fire. Words relating to "fire" is barely used.
+Many words have derived meanings from the 4 classical elements. In 2000 their "strength" is in the order of air > earth > water > fire. Words relating to "fire" is barely used.
