@@ -90,7 +90,7 @@ Lowercase, alphabetic only ngrams:
     |-----------+------+-------+---------|
     | anserinus | 1984 |    44 |       9 |
 
-Records the total number of 1-grams contained in the books.  
+total_count.csv records the total number of 1-grams contained in the books.  
 The following example: In 2008, 19482936409 words in 108811006 pages from 206272 distinct sources were recorded:
 
     ./output/total_counts.csv
@@ -109,8 +109,7 @@ All the noun synsets (synonyms) in WordNets:
     |----+----------------------+---------------------------------------------------------------------|
     | 36 | AND_circuit AND_gate | a circuit in a computer that fires only when all of its inputs fire |
 
-Direct Hyponyms (more specific synset) information e.g. (change, modification) -> (damage, harm).  
-1st field is a synset id; subsequent fields are the ids of its direct hyponyms.  
+Hyponyms are more specific synsets. e.g. (change, modification) -> (damage, harm).   
 The following example: #32 synset has 5 direct hyponyms which are #77393, #64712, #51671, #37744, #27392:
 
     ./output/wordnet/hyponyms.csv
