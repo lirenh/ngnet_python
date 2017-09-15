@@ -1,4 +1,10 @@
-# NGrams and WordNet
+# NGrams and WordNet (Python)
+
+
+The project organizes and analyses Google's NGrams dataset and WordNet data to show how the printed works in English has changed over time.
+
+Please see https://github.com/tarxv/ngnet_java for the java version.
+
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
